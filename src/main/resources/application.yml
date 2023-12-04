@@ -1,0 +1,48 @@
+server:
+  port: 9000
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  application:
+    name: API-GATEWAY-SERVICE
+  cloud:
+    gateway:
+      default-filters:
+        - RedirectionFilter
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+#  todo remove any of this? order service?
+#      routes:
+#        - id: User-service
+#          uri: http://user-service/api/user
+#          predicates:
+#            - Path=/api/user/**
+#
+#        - id: Product-service
+#          uri: http://product-service
+#          predicates:
+#            - Path=/api/products/**
+#
+#        - id: Order-service
+#          uri: http://order-service
+#          predicates:
+#            - Path=/api/order/**
+#          filters:
+#            - name: classname
+
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: true
+    serviceUrl:
+      defaultZone: http://localhost:9091/eureka/
+  instance:
+    prefer-ip-address: true
+    hostname: localhost
+
+#logging:
+#  level:
+#    org.springframework.cloud.gateway: DEBUG
+#    reactor.netty.http.client: DEBUG
